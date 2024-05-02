@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 ESD_URL=""
 TMP="$STORAGE/tmp"
+OEM="/oem"
 DIR="$TMP/unpack"
 FB="falling back to manual installation!"
 ETFS="boot/etfsboot.com"
@@ -702,9 +703,10 @@ updateImage() {
 
 copyOEM() {
   local dir="$1"
-  local folder="$STORAGE/oem"
+  local folder="$OEM"
   local src
 
+  [ ! -d "$folder" ] && folder="$OEM"
   [ ! -d "$folder" ] && folder="$STORAGE/OEM"
   [ ! -d "$folder" ] && folder="$STORAGE/shared/oem"
   [ ! -d "$folder" ] && folder="$STORAGE/shared/OEM"
